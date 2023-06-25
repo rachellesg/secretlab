@@ -1,5 +1,8 @@
 import React, { ReactNode } from "react";
+
 import "@/styles/globals.scss";
+import Header from "./common/header";
+import Footer from "./common/footer";
 
 interface LayoutProps {
   children: ReactNode;
@@ -7,12 +10,12 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div className="flex flex-col p-4 sm:p-12 lg:p-24">
-      <header>HEADER xx</header>
+    <div className="flex flex-col">
+      <Header />
       <main className="flex min-h-screen items-center justify-between">
         {children}
       </main>
-      <footer>FOOTER xx</footer>
+      <Footer />
     </div>
   );
 };
