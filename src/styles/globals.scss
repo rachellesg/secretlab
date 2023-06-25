@@ -1,0 +1,14 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@import "./_variables";
+
+body {
+  color: $grey-dark;
+  font-family: $body-font;
+  font-size: $body-font-size;
+  min-width: 100vw;
+  min-height: 100vh;
+  background: $grey-light;
+}
