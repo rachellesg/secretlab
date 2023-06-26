@@ -21,20 +21,29 @@ const Cart: React.FC = () => {
             {cartItems.map((product) => (
               <div
                 key={product.id}
-                className="flex justify-between bg-white rounded-lg shadow-md p-4 mb-4">
+                className="flex justify-between items-center bg-white rounded-lg shadow-md p-4 mb-4">
                 <h2 className="text-lg font-semibold">{product.title}</h2>
                 <span className="text-gray-600">
                   Quantity: {product.quantity}
                 </span>
                 <span className="text-gray-600">Price: ${product.price}</span>
-                <span onClick={() => handleRemoveFromCart(product.id)}>
-                  Remove
+                <span
+                  className="cursor-pointer"
+                  onClick={() => handleRemoveFromCart(product.id)}>
+                  <img src="/cross.svg" alt="Remove from cart" />
                 </span>
               </div>
             ))}
           </div>
           <div className="flex mt-5 flex-col">
-            <div>Order total: ${totalPrice}</div>
+            <div className="flex justify-between">
+              <Link href="/" className="text-blue-500 hover:underline flex">
+                Continue Shopping
+              </Link>
+              <div>
+                Order total: <span className="font-bold">${totalPrice}</span>
+              </div>
+            </div>
             <button className="mt-3 px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none">
               Checkout
             </button>
