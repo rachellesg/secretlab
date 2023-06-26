@@ -11,3 +11,11 @@ export interface Product {
   thumbnail: string;
   images: string[];
 }
+
+export type ImageGalleryProps = {
+  images: string[];
+};
+
+export type RatingProps = {
+  rating: number;
+};
