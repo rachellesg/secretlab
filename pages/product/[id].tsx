@@ -1,9 +1,14 @@
 import { useRouter } from "next/router";
 import { ChangeEvent, useEffect, useState } from "react";
+
 import { fetchProducts } from "@/utils/api";
-import { Product } from "@/utils/types";
+import { Product } from "@/utils/types/product";
+import useCartStore from "@/store/cart";
+import { Item } from "@/utils/types/cart";
 
 const ProductDetails = () => {
+  const cartStore = useCartStore();
+
   const router = useRouter();
   const { id } = router.query;
 
@@ -44,6 +49,16 @@ const ProductDetails = () => {
     setQuantity(parseInt(e.target.value));
   };
 
+  const handleAddToCart = () => {
+    const item: Item = {
+      id: product.id,
+      title: product.title,
+      price: product.price,
+      quantity: quantity,
+    };
+    cartStore.addToCart(item);
+  };
+
   return (
     <section className="container mx-auto flex gap-10">
       <div>
@@ -55,7 +70,7 @@ const ProductDetails = () => {
       </div>
       <div>
         <h1 className="text-4xl font-bold mb-4">{product.title}</h1>
-        <p className="flex items-center mb-5">
+        <div className="flex items-center mb-5">
           <div className="flex items-center mr-2">
             {[1, 2, 3, 4, 5].map((value) => {
               const isFilled = value <= Math.floor(product.rating);
@@ -91,7 +106,7 @@ const ProductDetails = () => {
             })}
           </div>
           <div>{product.rating}/5 rating</div>
-        </p>
+        </div>
         <p className="mb-5">{product.description}</p>
         <p>
           <span className="text-xl text-red-600">
@@ -128,7 +143,9 @@ const ProductDetails = () => {
             className="w-10 h-10 px-2 text-center border border-gray-300 rounded-r focus:outline-none focus:ring-2 focus:ring-blue-500">
             +
           </button>
-          <button className="ml-4 px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none">
+          <button
+            onClick={handleAddToCart}
+            className="ml-4 px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none">
             Add to Cart
           </button>
         </p>
