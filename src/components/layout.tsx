@@ -12,9 +12,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <div className="flex flex-col">
       <Header />
-      <main className="flex min-h-screen items-center justify-between">
-        {children}
-      </main>
+      <main className="flex min-h-screen justify-between">{children}</main>
       <Footer />
     </div>
   );
