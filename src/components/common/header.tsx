@@ -3,6 +3,10 @@ import Link from "next/link";
 
 const Header: React.FC<{}> = () => {
   const { cartItems } = useCartStore();
+
+  const quantities = cartItems.map((item) => item.quantity);
+  const totalQuantity = quantities.reduce((acc, quantity) => acc + quantity, 0);
+
   return (
     <header className="bg-gray-900 text-white py-4 mb-10">
       <div className="container mx-auto flex items-center justify-between px-4">
@@ -14,7 +18,7 @@ const Header: React.FC<{}> = () => {
             <div className="flex items-center mr-4">
               <img src="/cart.svg" alt="Cart" className="w-5 mr-1" />
               <span className="bg-red-500 text-white rounded-full px-1 py-1 flex items-center justify-center w-6 h-6">
-                {cartItems.length}
+                {totalQuantity}
               </span>
             </div>
           </Link>
