@@ -4,6 +4,7 @@ import { fetchProducts } from "@/utils/api";
 import { Product } from "@/utils/types";
 
 import "@/styles/home.scss";
+import Link from "next/link";
 
 export default function Home() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -86,6 +87,7 @@ export default function Home() {
                 {product.title}
               </h3>
               <p>Price: ${product.price}</p>
+              <Link href={`/product/${product.id}`}>View Details</Link>
               <div className="flex flex-wrap py-4 absolute bottom-0">
                 <span className="px-3 py-1 mr-2 text-sm font-semibold text-white bg-red-500 rounded-full">
                   {product.rating}
