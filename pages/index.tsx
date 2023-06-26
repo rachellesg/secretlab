@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { fetchProducts } from "@/utils/api";
-import { Product } from "@/utils/types";
+import { Product } from "@/utils/types/product";
 
 import "@/styles/home.scss";
 import Link from "next/link";
