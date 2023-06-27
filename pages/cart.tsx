@@ -85,8 +85,12 @@ const Cart: React.FC = () => {
                       </span>
                     </div>
                   ))}
-                  <div className="px-4 pb-4 flex justify-end">
-                    <div />
+                  <div className="px-4 pb-4 flex justify-between items-center">
+                    <Link
+                      href="/"
+                      className="text-link hover:text-link-hover hover:underline flex">
+                      &laquo; Continue Shopping
+                    </Link>
                     <button
                       onClick={handleClearCart}
                       className="px-4 py-2 bg-white border rounded-lg hover:bg-gray-200 focus:outline-none">
