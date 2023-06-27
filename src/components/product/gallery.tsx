@@ -10,7 +10,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ images }) => {
 
   return (
     <>
-      <div className="flex items-center justify-center w-full">
+      <div className="flex w-full">
         <img
           src={selectedImage}
           alt="Product Image"
@@ -24,7 +24,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ images }) => {
             src={image}
             alt={`Product Image ${index}`}
             className={`cursor-pointer w-20 h-20 object-cover rounded-lg border ${
-              selectedImage === image ? "border-accent" : "border-gray-300"
+              selectedImage === image ? "border-gray-300" : "border-gray-300"
             }`}
             onClick={() => handleImageClick(image)}
           />

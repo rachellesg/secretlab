@@ -1,9 +1,10 @@
 import { Product } from "@/utils/types/product";
 import Link from "next/link";
+import Rating from "./rating";
 
 const ProductListing: React.FC<{ product: Product }> = ({ product }) => {
   return (
-    <div className="relative flex flex-col h-full bg-white relative rounded-lg">
+    <div className="relative flex flex-col h-full bg-white relative rounded-lg border animate-slide-up">
       <Link href={`/product/${product.id}`}>
         <div className="flex items-center justify-center w-full md:h-[150px]">
           <img
@@ -12,17 +13,19 @@ const ProductListing: React.FC<{ product: Product }> = ({ product }) => {
             className="object-cover h-full w-full rounded-tr-lg rounded-tl-lg "
           />
         </div>
-        <div className="p-7 md:p-4 md:pb-16 mb-2">
+        <div className="pb-16 p-4 md:pb-14 mb-2">
           <h2 className="text-sm mt-2 font-semibold">{product.title}</h2>
-          <span className="line-through text-xs text-gray-400 mr-1">
+          <span className="line-through text-xs font-serif text-gray-400 mr-1">
             $
             {product.price +
               Math.round(product.price / product.discountPercentage)}
           </span>
-          <span className="font-bold text-sm">${product.price} </span>
+          <span className="font-bold font-serif text-sm">
+            ${product.price}{" "}
+          </span>
         </div>
       </Link>
-      <div className="flex justify-between items-center p-7 md:p-4 absolute bottom-0 w-full border-t-2 border-gray-100">
+      <div className="flex justify-between items-center px-7 py-3 md:px-3 absolute bottom-0 w-full border-t-2 border-gray-100">
         <div className="text-xs font-semibold flex items-center justify-start">
           <span className="text-white bg-yellow-500 rounded-full px-2 py-1 flex items-center text-white mr-2">
             <svg
@@ -51,9 +54,13 @@ const ProductListing: React.FC<{ product: Product }> = ({ product }) => {
         </div>
       </div>
       <div className="absolute top-2 right-1">
-        <span className="text-white text-xs bg-red-500 rounded-full px-2 py-1 flex items-center text-white mr-2">
-          SALE
-        </span>
+        {product.discountPercentage > 1 ? (
+          <span className="text-white text-xs bg-red-500 rounded-full px-2 py-1 flex items-center text-white mr-2">
+            SALE
+          </span>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

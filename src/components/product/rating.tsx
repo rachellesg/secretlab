@@ -34,7 +34,7 @@ const Rating: React.FC<RatingProps> = ({ rating }) => {
           );
         })}
       </div>
-      <div>{rating}/5 rating</div>
+      <div className="text-sm">({rating})</div>
     </>
   );
 };

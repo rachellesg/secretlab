@@ -67,7 +67,7 @@ export default function Home() {
               <select
                 value={sortOption}
                 onChange={handleSortOptionChange}
-                className="ml-2 p-2 rounded">
+                className="ml-2 px-1 py-2 rounded border">
                 <option value="">None</option>
                 <option value="category">Category</option>
                 <option value="price">Price</option>
@@ -75,7 +75,7 @@ export default function Home() {
               </select>
             </div>
           </div>
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
             {filteredProducts.map((product) => (
               <ProductListing key={product.id} product={product} />
             ))}
