@@ -9,6 +9,7 @@ import { Item } from "@/utils/types/cart";
 import Snackbar from "@/components/snackbar";
 import ImageGallery from "@/components/product/gallery";
 import Rating from "@/components/product/rating";
+import Link from "next/link";
 
 const ProductDetails = () => {
   const cartStore = useCartStore();
@@ -19,6 +20,7 @@ const ProductDetails = () => {
   const [product, setProduct] = useState<Product | null>(null);
   const [quantity, setQuantity] = useState(1);
 
+  const [isLoading, setIsLoading] = useState(false);
   const [snackbarVisible, setSnackbarVisible] = useState(false);
 
   useEffect(() => {
@@ -55,15 +57,19 @@ const ProductDetails = () => {
     setQuantity(parseInt(e.target.value));
   };
 
-  const handleAddToCart = () => {
+  const handleAddToCart = async () => {
+    setIsLoading(true);
     const item: Item = {
       id: product.id,
       title: product.title,
       price: product.price,
       quantity: quantity,
     };
-    setSnackbarVisible(true);
-    cartStore.addToCart(item);
+    setTimeout(() => {
+      cartStore.addToCart(item);
+      setSnackbarVisible(true);
+      setIsLoading(false);
+    }, 400);
   };
 
   return (
@@ -77,24 +83,27 @@ const ProductDetails = () => {
           <div className="flex items-center mb-5">
             <Rating rating={product.rating} />
           </div>
+          <p className="mb-5">Brand: {product.brand}</p>
           <p className="mb-5">{product.description}</p>
           <div className="flex flex-col">
             <div>
               <span className="text-xl text-red-600 mr-5">
-                Now $
-                {product.price -
-                  Math.round(product.price / product.discountPercentage)}
+                Now ${product.price}
               </span>
-              <span className="px-3 py-1 text-sm font-semibold text-white bg-red-500 rounded-full">
-                {Math.round(product.discountPercentage)}%
+              <span className="px-2 py-1 text-sm font-semibold text-white bg-red-500 rounded-full">
+                -{Math.round(product.discountPercentage)}%
               </span>
             </div>
             <div>
-              <span className="line-through text-sm">Was ${product.price}</span>
+              <span className="line-through text-sm">
+                Was $
+                {product.price +
+                  Math.round(product.price / product.discountPercentage)}
+              </span>
             </div>
           </div>
 
-          <div className="mt-10">
+          <div className="my-10">
             <button
               onClick={handleDecrease}
               className="w-10 h-10 px-2 text-center border border-gray-300 rounded-l focus:outline-none focus:ring-2 focus:ring-blue-500">
@@ -115,17 +124,22 @@ const ProductDetails = () => {
             </button>
             <button
               onClick={handleAddToCart}
-              className="ml-4 px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none">
-              Add to Cart
+              disabled={isLoading}
+              className={`ml-4 px-4 py-2 text-white bg-blue-500 rounded-full hover:bg-blue-600 focus:outline-none`}>
+              {isLoading ? "Adding..." : "Add to Cart"}
             </button>
           </div>
+
+          <Link href="/" className="text-link :link-hover hover:underline flex">
+            Back to products
+          </Link>
         </div>
       </section>
 
       <Snackbar
-        visible={snackbarVisible}
-        setVisible={setSnackbarVisible}
-        message="Product added to cart!"
+        isVisible={snackbarVisible}
+        setIsVisible={setSnackbarVisible}
+        message={<>Product has been added to cart!</>}
       />
     </>
   );
