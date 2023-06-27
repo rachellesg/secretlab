@@ -3,8 +3,6 @@ import { useEffect, useState } from "react";
 import { fetchProducts } from "@/utils/api";
 import { Product } from "@/utils/types/product";
 
-import "@/styles/home.scss";
-import Link from "next/link";
 import LoadingSpinner from "@/components/loading";
 import ProductListing from "@/components/product/listing";
 
