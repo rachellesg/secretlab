@@ -8,10 +8,12 @@ const Header: React.FC<{}> = () => {
   const totalQuantity = quantities.reduce((acc, quantity) => acc + quantity, 0);
 
   return (
-    <header className="bg-gray-300 py-2 mb-10">
+    <header className="py-4 mb-10 border-b">
       <div className="container mx-auto flex items-center justify-between">
         <h1 className="text-xl font-bold">
-          <Link href="/">SL MARKETPLACE</Link>
+          <Link href="/">
+            <img src="/logo.svg" alt="Logo Ipsum" />
+          </Link>
         </h1>
         <nav className="flex items-center">
           <Link href="/cart">
