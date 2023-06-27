@@ -8,16 +8,16 @@ const Header: React.FC<{}> = () => {
   const totalQuantity = quantities.reduce((acc, quantity) => acc + quantity, 0);
 
   return (
-    <header className="bg-gray-900 text-white py-4 mb-10">
-      <div className="container mx-auto flex items-center justify-between px-4">
-        <h1 className="text-2xl font-bold">
-          <Link href="/">Web store</Link>
+    <header className="bg-gray-300 py-2 mb-10">
+      <div className="container mx-auto flex items-center justify-between">
+        <h1 className="text-xl font-bold">
+          <Link href="/">SL MARKETPLACE</Link>
         </h1>
         <nav className="flex items-center">
           <Link href="/cart">
             <div className="flex items-center mr-4">
-              <img src="/cart.svg" alt="Cart" className="w-5 mr-1" />
-              <span className="bg-red-500 text-white rounded-full px-1 py-1 flex items-center justify-center w-6 h-6">
+              <img src="/cart.svg" alt="Cart" className="w-5 mr-1 text-white" />
+              <span className="bg-success text-xs rounded-full px-1 py-1 flex items-center justify-center w-5 h-5">
                 {totalQuantity}
               </span>
             </div>

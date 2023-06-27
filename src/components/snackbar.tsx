@@ -2,30 +2,30 @@ import { Dispatch, ReactNode, SetStateAction, useEffect } from "react";
 
 type SnackbarProps = {
   message: ReactNode;
-  visible: boolean;
-  setVisible: Dispatch<SetStateAction<boolean>>;
+  isVisible: boolean;
+  setIsVisible: Dispatch<SetStateAction<boolean>>;
 };
 
 const Snackbar: React.FC<SnackbarProps> = ({
-  visible,
-  setVisible,
+  isVisible,
+  setIsVisible,
   message,
 }) => {
   useEffect(() => {
-    setVisible(visible);
+    setIsVisible(isVisible);
 
     const timer = setTimeout(() => {
-      setVisible(false);
-    }, 5000);
+      setIsVisible(false);
+    }, 3000);
 
     return () => clearTimeout(timer);
-  }, [visible, setVisible]);
+  }, [isVisible, setIsVisible]);
 
   return (
     <div
       className={`${
-        visible ? "" : "hidden "
-      }fixed bottom-3 right-3 bg-green-600 text-white p-4`}>
+        isVisible ? "animate-slide-up " : "hidden "
+      }fixed bottom-3 right-3 bg-green-600 text-white p-4 transition-opacity duration-300`}>
       {message}
     </div>
   );
