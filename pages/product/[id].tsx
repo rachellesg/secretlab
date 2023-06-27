@@ -63,7 +63,9 @@ const ProductDetails = () => {
       id: product.id,
       title: product.title,
       price: product.price,
+      image: product.thumbnail,
       quantity: quantity,
+      discount: product.discountPercentage,
     };
     setTimeout(() => {
       cartStore.addToCart(item);
@@ -74,34 +76,25 @@ const ProductDetails = () => {
 
   return (
     <>
-      <section className="container mx-auto flex sm:gap-5 lg:gap-10">
-        <div className="w-1/2">
+      <section className="container mx-auto flex md:flex-row flex-col sm:gap-5 lg:gap-10">
+        <div className="w-full md:w-2/5 animate-fade-in">
           <ImageGallery images={product.images} />
         </div>
-        <div className="w-1/2">
-          <h1 className="text-4xl font-bold mb-4">{product.title}</h1>
+        <div className="w-full md:w-3/5 animate-fade-in ">
+          <h1 className="text-4xl font-bold my-4 uppercase">{product.title}</h1>
           <div className="flex items-center mb-5">
             <Rating rating={product.rating} />
           </div>
-          <p className="mb-5">Brand: {product.brand}</p>
-          <p className="mb-5">{product.description}</p>
-          <div className="flex flex-col">
-            <div>
-              <span className="text-xl text-red-600 mr-5">
-                Now ${product.price}
-              </span>
-              <span className="px-2 py-1 text-sm font-semibold text-white bg-red-500 rounded-full">
-                -{Math.round(product.discountPercentage)}%
-              </span>
-            </div>
-            <div>
-              <span className="line-through text-sm">
-                Was $
-                {product.price +
-                  Math.round(product.price / product.discountPercentage)}
-              </span>
-            </div>
+
+          <div className="flex text-3xl mb-10 font-serif">
+            <span className="line-through mr-2">
+              $
+              {product.price +
+                Math.round(product.price / product.discountPercentage)}
+            </span>
+            <span className="text-red-600 font-bold">${product.price}</span>
           </div>
+          <p className="mb-5">{product.description}</p>
 
           <div className="my-10">
             <button
@@ -115,7 +108,7 @@ const ProductDetails = () => {
               pattern="[1-9]*"
               value={quantity}
               onChange={handleQuantityChange}
-              className="w-16 h-10 px-2 text-center border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none"
+              className="w-16 h-10 px-2 text-center border focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none"
             />
             <button
               onClick={handleIncrease}
@@ -125,12 +118,12 @@ const ProductDetails = () => {
             <button
               onClick={handleAddToCart}
               disabled={isLoading}
-              className={`ml-4 px-4 py-2 text-white bg-blue-500 rounded-full hover:bg-blue-600 focus:outline-none`}>
-              {isLoading ? "Adding..." : "Add to Cart"}
+              className={`ml-4 px-10 py-2 bg-primary text-white rounded-full hover:bg-white hover:bg-gray-900 focus:outline-none`}>
+              {isLoading ? "Adding to cart..." : "Add to Cart"}
             </button>
           </div>
 
-          <Link href="/" className="text-link :link-hover hover:underline flex">
+          <Link href="/" className="text-link :link-hover hover:underline">
             Back to products
           </Link>
         </div>
