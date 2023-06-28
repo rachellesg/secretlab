@@ -10,6 +10,7 @@ import Snackbar from "@/components/snackbar";
 import ImageGallery from "@/components/product/gallery";
 import Rating from "@/components/product/rating";
 import Link from "next/link";
+import LoadingSpinner from "@/components/loading";
 
 const ProductDetails = () => {
   const cartStore = useCartStore();
@@ -40,7 +41,7 @@ const ProductDetails = () => {
   }, [id]);
 
   if (!product) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner />;
   }
 
   const handleDecrease = () => {
@@ -78,6 +79,12 @@ const ProductDetails = () => {
     <>
       <section className="container mx-auto flex md:flex-row flex-col sm:gap-5 lg:gap-10">
         <div className="w-full md:w-2/5 animate-fade-in">
+          <div className="text-xs mb-3">
+            <Link href="/" className="text-link :link-hover hover:underline">
+              Home
+            </Link>{" "}
+            / {product.title}
+          </div>
           <ImageGallery images={product.images} />
         </div>
         <div className="w-full md:w-3/5 animate-fade-in ">
@@ -118,21 +125,26 @@ const ProductDetails = () => {
             <button
               onClick={handleAddToCart}
               disabled={isLoading}
-              className={`ml-4 px-10 py-2 bg-primary text-white rounded-full hover:bg-white hover:bg-gray-900 focus:outline-none`}>
+              className={`sm:ml-4 mt-4 sm:m-0 w-full sm:w-auto px-10 py-2 bg-primary text-white rounded-full hover:text-black hover:bg-secondary focus:outline-none`}>
               {isLoading ? "Adding to cart..." : "Add to Cart"}
             </button>
           </div>
 
-          <Link href="/" className="text-link :link-hover hover:underline">
-            Back to products
-          </Link>
+          <div className="border-t flex text-xs justify-between pt-3">
+            <span>Brand: {product.brand}</span>
+            <span>Category: {product.category}</span>
+          </div>
         </div>
       </section>
 
       <Snackbar
         isVisible={snackbarVisible}
         setIsVisible={setSnackbarVisible}
-        message={<>Product has been added to cart!</>}
+        message={
+          <Link href="/cart" className="hover:underline">
+            Product has been added to cart!
+          </Link>
+        }
       />
     </>
   );

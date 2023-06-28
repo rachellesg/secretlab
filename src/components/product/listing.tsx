@@ -25,9 +25,9 @@ const ProductListing: React.FC<{ product: Product }> = ({ product }) => {
           </span>
         </div>
       </Link>
-      <div className="flex justify-between items-center px-7 py-3 md:px-3 absolute bottom-0 w-full border-t-2 border-gray-100">
+      <div className="flex justify-between items-center px-4 py-3 absolute bottom-0 w-full border-t-2 border-gray-100">
         <div className="text-xs font-semibold flex items-center justify-start">
-          <span className="text-white bg-yellow-500 rounded-full px-2 py-1 flex items-center text-white mr-2">
+          <span className="text-white bg-yellow-400 rounded-full px-2 py-1 flex items-center text-white mr-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-4 w-4"
@@ -48,7 +48,7 @@ const ProductListing: React.FC<{ product: Product }> = ({ product }) => {
           </div>
         </div>
         <div className="flex justify-end">
-          <div className="w-6 h-6 cursor-pointer hover:bg-amber-500 flex text-md items-center justify-center font-semibold text-white bg-amber-600 rounded-full">
+          <div className="w-6 h-6 cursor-pointer hover:bg-secondary hover:text-black flex text-md items-center justify-center font-semibold text-white bg-primary rounded-full">
             +
           </div>
         </div>

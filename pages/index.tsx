@@ -59,10 +59,10 @@ export default function Home() {
       ) : (
         <>
           <div className="flex flex-1 items-center space-between mb-5">
-            <h1 className="text-md font-bold w-1/2">
+            <h1 className="text-md font-bold w-2/5 sm:w-1/2">
               {filteredProducts.length} results
             </h1>
-            <div className="w-1/2 flex justify-end items-center">
+            <div className="w-3/5 sm:w-1/2 flex justify-end items-center">
               <label>Sort by:</label>
               <select
                 value={sortOption}
