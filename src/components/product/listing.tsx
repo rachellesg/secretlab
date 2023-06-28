@@ -48,7 +48,7 @@ const ProductListing: React.FC<{ product: Product }> = ({ product }) => {
           </div>
         </div>
         <div className="flex justify-end">
-          <div className="w-6 h-6 cursor-pointer hover:bg-secondary hover:text-black flex text-md items-center justify-center font-semibold text-white bg-primary rounded-full">
+          <div className="w-6 h-6 cursor-pointer hover:bg-primary hover:text-white flex text-md items-center justify-center font-semibold text-black bg-secondary rounded-full">
             +
           </div>
         </div>
