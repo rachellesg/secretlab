@@ -25,7 +25,7 @@ const Snackbar: React.FC<SnackbarProps> = ({
     <div
       className={`${
         isVisible ? "animate-slide-up " : "hidden "
-      }fixed bottom-3 right-3 bg-green-600 text-white p-4 transition-opacity duration-300`}>
+      }fixed z-50 bottom-3 right-3 bg-green-600 text-white p-4 transition-opacity duration-300`}>
       {message}
     </div>
   );

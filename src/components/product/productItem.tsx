@@ -1,7 +1,28 @@
+import useCartStore from "@/store/cart";
+import { Item } from "@/utils/types/cart";
 import { Product } from "@/utils/types/product";
 import Link from "next/link";
+import { useState } from "react";
+import Snackbar from "../snackbar";
 
-const ProductListing: React.FC<{ product: Product }> = ({ product }) => {
+const ProductItem: React.FC<{ product: Product }> = ({ product }) => {
+  const [snackbarVisible, setSnackbarVisible] = useState(false);
+  const cartStore = useCartStore();
+
+  const handleAddToCart = async () => {
+    const item: Item = {
+      id: product.id,
+      title: product.title,
+      price: product.price,
+      image: product.thumbnail,
+      quantity: 1,
+      discount: product.discountPercentage,
+    };
+    setTimeout(() => {
+      cartStore.addToCart(item);
+      setSnackbarVisible(true);
+    }, 400);
+  };
   return (
     <div className="relative flex flex-col h-full bg-white relative rounded-lg border animate-slide-up">
       <Link href={`/product/${product.id}`}>
@@ -47,7 +68,9 @@ const ProductListing: React.FC<{ product: Product }> = ({ product }) => {
           </div>
         </div>
         <div className="flex justify-end">
-          <div className="w-6 h-6 cursor-pointer hover:bg-primary hover:text-white flex text-md items-center justify-center font-semibold text-black bg-secondary rounded-full">
+          <div
+            onClick={handleAddToCart}
+            className="w-6 h-6 cursor-pointer hover:bg-primary hover:text-white flex text-md items-center justify-center font-semibold text-black bg-secondary rounded-full">
             +
           </div>
         </div>
@@ -61,8 +84,18 @@ const ProductListing: React.FC<{ product: Product }> = ({ product }) => {
           ""
         )}
       </div>
+
+      <Snackbar
+        isVisible={snackbarVisible}
+        setIsVisible={setSnackbarVisible}
+        message={
+          <Link href="/cart" className="hover:underline">
+            {product.title} has been added to cart!
+          </Link>
+        }
+      />
     </div>
   );
 };
 
-export default ProductListing;
+export default ProductItem;

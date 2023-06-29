@@ -4,7 +4,7 @@ import { fetchProducts } from "@/utils/api";
 import { Product } from "@/utils/types/product";
 
 import LoadingSpinner from "@/components/loading";
-import ProductListing from "@/components/product/listing";
+import ProductItem from "@/components/product/productItem";
 
 export default function Home() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -77,7 +77,7 @@ export default function Home() {
           </div>
           <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
             {filteredProducts.map((product) => (
-              <ProductListing key={product.id} product={product} />
+              <ProductItem key={product.id} product={product} />
             ))}
           </div>
         </>

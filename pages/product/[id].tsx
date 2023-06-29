@@ -142,7 +142,7 @@ const ProductDetails = () => {
         setIsVisible={setSnackbarVisible}
         message={
           <Link href="/cart" className="hover:underline">
-            Product has been added to cart!
+            {product.title} has been added to cart!
           </Link>
         }
       />
