@@ -1,6 +1,5 @@
 import { Product } from "@/utils/types/product";
 import Link from "next/link";
-import Rating from "./rating";
 
 const ProductListing: React.FC<{ product: Product }> = ({ product }) => {
   return (

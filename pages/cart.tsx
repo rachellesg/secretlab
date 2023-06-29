@@ -3,6 +3,10 @@ import Snackbar from "@/components/snackbar";
 import useCartStore from "@/store/cart";
 import Link from "next/link";
 
+import EmptyCart from "@/components/cart/emptyCart";
+import CartItem from "@/components/cart/cartItem";
+import CartSummary from "@/components/cart/cartSummary";
+
 const Cart: React.FC = () => {
   const { cartItems } = useCartStore();
   const cartStore = useCartStore();
@@ -17,11 +21,18 @@ const Cart: React.FC = () => {
     cartStore.clearCart();
   };
 
-  const prices = cartItems.map((item) => item.price * item.quantity);
-  const totalPrice = prices.reduce((acc, price) => acc + price, 0);
+  const { totalPrice, totalDiscount } = cartItems.reduce(
+    (accumulator, item) => {
+      const price = item.price * item.quantity;
+      const discount = item.discount * item.quantity;
 
-  const discounts = cartItems.map((item) => item.discount);
-  const totalDiscount = discounts.reduce((acc, discount) => acc + discount, 0);
+      return {
+        totalPrice: accumulator.totalPrice + price,
+        totalDiscount: accumulator.totalDiscount + discount,
+      };
+    },
+    { totalPrice: 0, totalDiscount: 0 }
+  );
 
   return (
     <>
@@ -50,40 +61,11 @@ const Cart: React.FC = () => {
                     <span className="cursor-pointer flex justify-end items-start w-1/6"></span>
                   </div>
                   {cartItems.map((product) => (
-                    <div
+                    <CartItem
                       key={product.id}
-                      className="flex justify-between bg-white p-4 mb-4 border-b w-full">
-                      <img
-                        src={product.image}
-                        alt={product.title}
-                        className="w-1/6"
-                      />
-                      <div className="w-3/6 px-5">
-                        <span className="">
-                          <h2 className="text-lg font-semibold">
-                            {product.title}
-                          </h2>
-                          ${product.price}
-                          <span className="line-through text-xs text-gray-500 ml-1">
-                            $
-                            {product.price +
-                              Math.round(product.price / product.discount)}
-                          </span>
-                        </span>
-                      </div>
-                      <span className="text-gray-600 w-1/6 flex justify-center">
-                        {product.quantity}
-                      </span>
-                      <span
-                        className="cursor-pointer flex justify-end items-start w-1/6"
-                        onClick={() => handleRemoveFromCart(product.id)}>
-                        <img
-                          src="/cross.svg"
-                          alt="Remove from cart"
-                          className="border-white w-5 hover:border-gray-500"
-                        />
-                      </span>
-                    </div>
+                      item={product}
+                      onRemove={handleRemoveFromCart}
+                    />
                   ))}
                   <div className="px-4 pb-4 flex justify-between items-center">
                     <Link
@@ -100,18 +82,10 @@ const Cart: React.FC = () => {
                 </div>
               </div>
               <div className="flex flex-col w-full sm:w-2/5 lg:w-2/6">
-                <div className="flex justify-between items-center my-2">
-                  <div>Subtotal:</div>
-                  <div className="font-bold">${totalPrice}</div>
-                </div>
-                <div className="flex justify-between items-center text-gray-400 my-2">
-                  <div>Total savings:</div>
-                  <div>${Math.round(totalDiscount)}</div>
-                </div>
-                <div className="flex justify-between items-center border-t mt-5 pt-5">
-                  <div>Grand total:</div>
-                  <div className="font-bold">${totalPrice}</div>
-                </div>
+                <CartSummary
+                  totalPrice={totalPrice}
+                  totalDiscount={totalDiscount}
+                />
                 <button className="mt-5 px-4 py-2 text-white bg-link rounded-lg hover:bg-link-hover focus:outline-none">
                   Checkout Now
                 </button>
@@ -119,14 +93,7 @@ const Cart: React.FC = () => {
             </div>
           </>
         ) : (
-          <>
-            <span className="text-md">Your cart is currently empty.</span>
-            <Link
-              href="/"
-              className="text-link hover:text-link-hover hover:underline flex">
-              Continue Shopping
-            </Link>
-          </>
+          <EmptyCart />
         )}
       </section>
 
