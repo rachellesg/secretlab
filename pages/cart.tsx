@@ -24,7 +24,7 @@ const Cart: React.FC = () => {
   const { totalPrice, totalDiscount } = cartItems.reduce(
     (accumulator, item) => {
       const price = item.price * item.quantity;
-      const discount = item.discount * item.quantity;
+      const discount = ((item.price * item.discount) / 100) * item.quantity;
 
       return {
         totalPrice: accumulator.totalPrice + price,

@@ -1,4 +1,5 @@
 import { Item } from "@/utils/types/cart";
+import Link from "next/link";
 
 interface CartItemProps {
   item: Item;
@@ -15,10 +16,15 @@ const CartItem: React.FC<CartItemProps> = ({ item, onRemove }) => {
       <img src={item.image} alt={item.title} className="w-1/6" />
       <div className="w-3/6 px-5">
         <span>
-          <h2 className="text-lg font-semibold">{item.title}</h2>${item.price}
-          <span className="line-through text-xs text-gray-500 ml-1">
-            ${item.price + Math.round(item.price / item.discount)}
-          </span>
+          <Link href={`/product/${item.id}`}>
+            <h2 className="text-lg font-semibold hover:text-primary hover:underline">
+              {item.title}
+            </h2>
+            ${item.price}
+            <span className="line-through text-xs text-gray-500 ml-1">
+              ${item.price + Math.round(item.price / item.discount)}
+            </span>
+          </Link>
         </span>
       </div>
       <span className="text-gray-600 w-1/6 flex justify-center">
