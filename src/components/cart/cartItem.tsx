@@ -1,10 +1,5 @@
-import { Item } from "@/utils/types/cart";
+import { CartItemProps } from "@/utils/types/cart";
 import Link from "next/link";
-
-interface CartItemProps {
-  item: Item;
-  onRemove: (id: number) => void;
-}
 
 const CartItem: React.FC<CartItemProps> = ({ item, onRemove }) => {
   const handleRemoveClick = () => {

@@ -13,3 +13,8 @@ export type Item = {
   quantity: number;
   discount: number;
 };
+
+export type CartItemProps = {
+  item: Item;
+  onRemove: (id: number) => void;
+};
