@@ -1,0 +1,8 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "jsx": "react-jsx" // Specify the JSX transformation to use (e.g., react-jsx, react-jsxdev, react-native)
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx"], // Include TypeScript files to be compiled by Jest
+  "exclude": ["node_modules"] // Exclude any directories or files that should not be compiled by Jest
+}
