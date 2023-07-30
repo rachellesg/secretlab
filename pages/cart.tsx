@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Snackbar from "@/components/snackbar";
 import useCartStore from "@/store/cart";
 import Link from "next/link";
@@ -10,7 +10,12 @@ import CartSummary from "@/components/cart/cartSummary";
 const Cart: React.FC = () => {
   const { cartItems } = useCartStore();
   const cartStore = useCartStore();
+
   const [snackbarVisible, setSnackbarVisible] = useState(false);
+
+  useEffect(() => {
+    useCartStore.persist.rehydrate();
+  }, []);
 
   const handleRemoveFromCart = (id: number) => {
     cartStore.removeFromCart(id);
