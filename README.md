@@ -2,6 +2,12 @@
 
 This is my submission for the Secretlab Front End Task. The task involves creating a front-end only application for an Ecommerce webstore. The application will allow users to browse and purchase products from the webstore. While I was able to complete most of the requirements, I faced challenges in implementing Jest testing with Zustand due to limited time and the complexity of the task. Given more time, I believe I can overcome these challenges and successfully implement the testing.
 
+### 30 July 2023 - Additional requirements
+
+- To add testing for add to cart feature
+- To save cart even after page refreshes
+- Optimize code using advanced Next.js techniques to handle traffic of 1 million views per second
+
 ## Technologies Used
 
 - Next.js
