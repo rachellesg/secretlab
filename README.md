@@ -16,6 +16,10 @@ Initially, I attempted to utilize local storage directly in the Cart component b
 
 Subsequently, after conducting more research, I found that Zustand offers a Persist middleware, which facilitates the storage of state. This middleware allows for the persistence of the Cart state across page refreshes and resolves the problem I encountered earlier.
 
+#### Handle traffic
+
+I changed the data fetching from client side to server side to improve load times. I also updated the images to using `next/image` component as it comes with automatic image optimization.
+
 ---
 
 ## Technologies Used
