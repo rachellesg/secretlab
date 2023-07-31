@@ -64,6 +64,6 @@ During the development process, I encountered a few limitations and implemented 
 
 - API Data Limitations: As the application relies on a dummy product API, the data provided might not be exhaustive or reflect real-world scenarios. To mitigate this, I ensured that the application's design and functionality could accommodate a variety of product data structures and adapt to potential changes in the API response format.
 
-- Learning Curve: While working with new technologies like Next.js, Zustand and JEST, there was a learning curve involved. However, I proactively sought documentation, tutorials, and examples to understand the concepts and best practices. This allowed me to efficiently utilize these technologies within the application and deliver a high-quality user experience.
+- Learning Curve: While working with new technologies like Next.js, Typescript, Zustand and Jest, there was a learning curve involved. However, I proactively sought documentation, tutorials, and examples to understand the concepts and best practices. This allowed me to efficiently utilize these technologies within the application and deliver a high-quality user experience.
 
 Despite the challenges faced in implementing Jest testing with Zustand, I am confident in my ability to learn and adapt to new technologies given more time. This front-end application showcases my proficiency in building responsive user interfaces, handling API data, and managing shared state effectively. I'm excited to continue expanding my skills and contributing to front-end development projects.
