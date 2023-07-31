@@ -20,6 +20,10 @@ Subsequently, after conducting more research, I found that Zustand offers a Pers
 
 I changed the data fetching from client side to server side to improve load times. I also updated the images to using `next/image` component as it comes with automatic image optimization.
 
+#### Testing
+
+I added a simple mock testing for the add to cart feature. First I defined the state so Jest could access the functions and mocked the add to cart function. For the results I checked that the added mock product matches the first item in the cart
+
 ---
 
 ## Technologies Used
