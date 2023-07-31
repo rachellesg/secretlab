@@ -4,6 +4,8 @@ import useCartStore from "@/store/cart";
 import Image from "next/image";
 import Link from "next/link";
 
+import logoImage from "/logo.svg";
+
 const Header: React.FC<{}> = () => {
   const { cartItems } = useCartStore();
 
@@ -31,6 +33,8 @@ const Header: React.FC<{}> = () => {
               src="/logo.svg"
               alt="Logo Ipsum"
               className="animate-fade-in"
+              width="200"
+              height="45"
             />
           </Link>
         </h1>
@@ -41,6 +45,8 @@ const Header: React.FC<{}> = () => {
                 src="/cart.svg"
                 alt="Cart"
                 className="animate-rotate-in w-5 mr-1 text-white"
+                width="20"
+                height="20"
               />
               <span
                 className={`${

@@ -6,26 +6,28 @@ import { Product } from "@/utils/types/product";
 import LoadingSpinner from "@/components/loading";
 import ProductItem from "@/components/product/productItem";
 
-export default function Home() {
-  const [products, setProducts] = useState<Product[]>([]);
+interface IndexProps {
+  products: Product[];
+}
+
+export async function getServerSideProps() {
+  try {
+    const products = await fetchProducts();
+    return { props: { products } };
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    return { props: { products: [] } };
+  }
+}
+
+export default function Home({ products }: IndexProps) {
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [sortOption, setSortOption] = useState<string>("");
 
   useEffect(() => {
-    const fetchProductsData = async () => {
-      try {
-        const data = await fetchProducts();
-        setProducts(data);
-        setIsLoading(false);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-        setIsLoading(false);
-      }
-    };
-
-    fetchProductsData();
+    if (products) setIsLoading(false);
   }, []);
 
   useEffect(() => {

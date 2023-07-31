@@ -9,7 +9,13 @@ const CartItem: React.FC<CartItemProps> = ({ item, onRemove }) => {
 
   return (
     <div className="flex justify-between bg-white p-4 mb-4 border-b w-full">
-      <Image src={item.image} alt={item.title} className="w-1/6" />
+      <Image
+        src={item.image}
+        alt={item.title}
+        className="w-1/6"
+        width="200"
+        height="200"
+      />
       <div className="w-3/6 px-5">
         <span>
           <Link href={`/product/${item.id}`}>
@@ -33,6 +39,8 @@ const CartItem: React.FC<CartItemProps> = ({ item, onRemove }) => {
           src="/cross.svg"
           alt="Remove from cart"
           className="border-white w-5 hover:border-gray-500"
+          width="5"
+          height="5"
         />
       </span>
     </div>

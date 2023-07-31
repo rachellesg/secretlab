@@ -17,6 +17,8 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ images }) => {
           src={selectedImage}
           alt="Product Image"
           className="w-full h-auto max-w-[500px]"
+          width="500"
+          height="0"
         />
       </div>
       <div className="flex flex-wrap gap-4 mt-5">
@@ -28,6 +30,8 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ images }) => {
             className={`cursor-pointer w-20 h-20 object-cover rounded-lg border ${
               selectedImage === image ? "border-gray-300" : "border-gray-300"
             }`}
+            width="100"
+            height="100"
             onClick={() => handleImageClick(image)}
           />
         ))}

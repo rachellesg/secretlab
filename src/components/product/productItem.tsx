@@ -34,6 +34,8 @@ const ProductItem: React.FC<{ product: Product }> = ({ product }) => {
           <Image
             src={product.thumbnail}
             alt={product.title}
+            width="238"
+            height="150"
             className="object-cover h-full w-full rounded-tr-lg rounded-tl-lg"
           />
         </div>
