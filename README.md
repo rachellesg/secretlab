@@ -4,9 +4,19 @@ This is my submission for the Secretlab Front End Task. The task involves creati
 
 ### 30 July 2023 - Additional requirements
 
-- To add testing for add to cart feature
 - To save cart even after page refreshes
+- To add testing for add to cart feature
 - Optimize code using advanced Next.js techniques to handle traffic of 1 million views per second
+
+### Limitations and work arounds
+
+#### Cart persistence
+
+Initially, I attempted to utilize local storage directly in the Cart component by incorporating it as a React state. However, I encountered an issue where the Cart reset whenever the page was refreshed due to server-side rendering. As the component is rendered on the server initially, local storage was not accessible, leading to a mismatch in the UI.
+
+Subsequently, after conducting more research, I found that Zustand offers a Persist middleware, which facilitates the storage of state. This middleware allows for the persistence of the Cart state across page refreshes and resolves the problem I encountered earlier.
+
+---
 
 ## Technologies Used
 
