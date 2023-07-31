@@ -3,9 +3,9 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 
+import useCartStore from "@/store/cart";
 import { fetchProducts } from "@/utils/api";
 import { Product } from "@/utils/types/product";
-import useCartStore from "@/store/cart";
 import { Item } from "@/utils/types/cart";
 
 const Snackbar = dynamic(() => import("@/components/snackbar"));
@@ -13,33 +13,30 @@ const ImageGallery = dynamic(() => import("@/components/product/gallery"));
 const Rating = dynamic(() => import("@/components/product/rating"));
 const LoadingSpinner = dynamic(() => import("@/components/loading"));
 
-const ProductDetails = () => {
+export async function getServerSideProps(context: { query: { id: Number } }) {
+  const { id } = context.query;
+
+  try {
+    const products = await fetchProducts();
+    const selectedProduct = products.find((p) => p.id === Number(id));
+    const product = selectedProduct || null;
+    return { props: { product } };
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    return { props: { product: null } };
+  }
+}
+
+const ProductDetails = ({ product }: Product) => {
   const cartStore = useCartStore();
 
   const router = useRouter();
   const { id } = router.query;
 
-  const [product, setProduct] = useState<Product | null>(null);
   const [quantity, setQuantity] = useState(1);
 
   const [isLoading, setIsLoading] = useState(false);
   const [snackbarVisible, setSnackbarVisible] = useState(false);
-
-  useEffect(() => {
-    const fetchProductsData = async () => {
-      try {
-        const products = await fetchProducts();
-        const selectedProduct = products.find((p) => p.id === Number(id));
-        setProduct(selectedProduct || null);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    };
-
-    if (id) {
-      fetchProductsData();
-    }
-  }, [id]);
 
   if (!product) {
     return <LoadingSpinner />;
