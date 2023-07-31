@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import Snackbar from "@/components/snackbar";
 import useCartStore from "@/store/cart";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 
-import EmptyCart from "@/components/cart/emptyCart";
-import CartItem from "@/components/cart/cartItem";
-import CartSummary from "@/components/cart/cartSummary";
+const CartItem = dynamic(() => import("@/components/cart/cartItem"));
+const EmptyCart = dynamic(() => import("@/components/cart/emptyCart"));
+const CartSummary = dynamic(() => import("@/components/cart/cartSummary"));
 
 const Cart: React.FC = () => {
   const { cartItems } = useCartStore();

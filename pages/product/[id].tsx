@@ -1,16 +1,17 @@
-import { useRouter } from "next/router";
 import { ChangeEvent, useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import Link from "next/link";
+import dynamic from "next/dynamic";
 
 import { fetchProducts } from "@/utils/api";
 import { Product } from "@/utils/types/product";
 import useCartStore from "@/store/cart";
 import { Item } from "@/utils/types/cart";
 
-import Snackbar from "@/components/snackbar";
-import ImageGallery from "@/components/product/gallery";
-import Rating from "@/components/product/rating";
-import Link from "next/link";
-import LoadingSpinner from "@/components/loading";
+const Snackbar = dynamic(() => import("@/components/snackbar"));
+const ImageGallery = dynamic(() => import("@/components/product/gallery"));
+const Rating = dynamic(() => import("@/components/product/rating"));
+const LoadingSpinner = dynamic(() => import("@/components/loading"));
 
 const ProductDetails = () => {
   const cartStore = useCartStore();
