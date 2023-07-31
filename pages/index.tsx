@@ -2,13 +2,10 @@ import { useEffect, useState } from "react";
 
 import { fetchProducts } from "@/utils/api";
 import { Product } from "@/utils/types/product";
+import { HomeProps } from "@/utils/types/home";
 
 import LoadingSpinner from "@/components/loading";
 import ProductItem from "@/components/product/productItem";
-
-interface IndexProps {
-  products: Product[];
-}
 
 export async function getServerSideProps() {
   try {
@@ -20,7 +17,7 @@ export async function getServerSideProps() {
   }
 }
 
-export default function Home({ products }: IndexProps) {
+export default function Home({ products }: HomeProps) {
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
