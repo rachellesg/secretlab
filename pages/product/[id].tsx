@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 
 import useCartStore from "@/store/cart";
 import { fetchProducts } from "@/utils/api";
-import { Product } from "@/utils/types/product";
+import { ProductProps } from "@/utils/types/product";
 import { Item } from "@/utils/types/cart";
 
 const Snackbar = dynamic(() => import("@/components/snackbar"));
@@ -27,7 +27,7 @@ export async function getServerSideProps(context: { query: { id: Number } }) {
   }
 }
 
-const ProductDetails = ({ product }: Product) => {
+const ProductDetails = ({ product }: ProductProps) => {
   const cartStore = useCartStore();
 
   const router = useRouter();

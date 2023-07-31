@@ -12,6 +12,10 @@ export interface Product {
   images: string[];
 }
 
+export type ProductProps = {
+  product: Product;
+};
+
 export type ImageGalleryProps = {
   images: string[];
 };
