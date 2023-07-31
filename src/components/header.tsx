@@ -1,6 +1,8 @@
-import useCartStore from "@/store/cart";
-import Link from "next/link";
 import { useEffect, useState } from "react";
+import useCartStore from "@/store/cart";
+
+import Image from "next/image";
+import Link from "next/link";
 
 const Header: React.FC<{}> = () => {
   const { cartItems } = useCartStore();
@@ -25,13 +27,17 @@ const Header: React.FC<{}> = () => {
       <div className="container mx-auto flex items-center justify-between">
         <h1 className="text-xl font-bold">
           <Link href="/">
-            <img src="/logo.svg" alt="Logo Ipsum" className="animate-fade-in" />
+            <Image
+              src="/logo.svg"
+              alt="Logo Ipsum"
+              className="animate-fade-in"
+            />
           </Link>
         </h1>
         <nav className="flex items-center">
           <Link href="/cart">
             <div className="flex items-center mr-4">
-              <img
+              <Image
                 src="/cart.svg"
                 alt="Cart"
                 className="animate-rotate-in w-5 mr-1 text-white"

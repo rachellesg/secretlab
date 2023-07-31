@@ -1,8 +1,12 @@
+import { useState } from "react";
+
 import useCartStore from "@/store/cart";
 import { Item } from "@/utils/types/cart";
 import { Product } from "@/utils/types/product";
+
 import Link from "next/link";
-import { useState } from "react";
+import Image from "next/image";
+
 import Snackbar from "../snackbar";
 
 const ProductItem: React.FC<{ product: Product }> = ({ product }) => {
@@ -27,10 +31,10 @@ const ProductItem: React.FC<{ product: Product }> = ({ product }) => {
     <div className="relative flex flex-col h-full bg-white relative rounded-lg border animate-slide-up">
       <Link href={`/product/${product.id}`}>
         <div className="flex items-center justify-center w-full md:h-[150px]">
-          <img
+          <Image
             src={product.thumbnail}
             alt={product.title}
-            className="object-cover h-full w-full rounded-tr-lg rounded-tl-lg "
+            className="object-cover h-full w-full rounded-tr-lg rounded-tl-lg"
           />
         </div>
         <div className="pb-16 p-4 md:pb-14 mb-2">

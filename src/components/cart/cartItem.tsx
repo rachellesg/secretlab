@@ -1,5 +1,6 @@
 import { CartItemProps } from "@/utils/types/cart";
 import Link from "next/link";
+import Image from "next/image";
 
 const CartItem: React.FC<CartItemProps> = ({ item, onRemove }) => {
   const handleRemoveClick = () => {
@@ -8,7 +9,7 @@ const CartItem: React.FC<CartItemProps> = ({ item, onRemove }) => {
 
   return (
     <div className="flex justify-between bg-white p-4 mb-4 border-b w-full">
-      <img src={item.image} alt={item.title} className="w-1/6" />
+      <Image src={item.image} alt={item.title} className="w-1/6" />
       <div className="w-3/6 px-5">
         <span>
           <Link href={`/product/${item.id}`}>
