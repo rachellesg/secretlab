@@ -1,6 +1,6 @@
 export type CartStore = {
   cartItems: Item[];
-  addToCart: (item: Item) => void;
+  addToCart: (product: Item) => void;
   removeFromCart: (itemId: number) => void;
   clearCart: () => void;
 };

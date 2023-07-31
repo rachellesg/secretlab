@@ -1,4 +1,3 @@
-import React from "react";
 import { render, screen } from "@testing-library/react";
 import Snackbar from "../components/snackbar";
 
@@ -20,8 +19,6 @@ test("renders the snackbar component with the provided message", () => {
 });
 
 test("shows the snackbar component", () => {
-  jest.useFakeTimers();
-
   const message = "This is a snackbar message";
   const isVisible = true;
   const setIsVisible = jest.fn();
