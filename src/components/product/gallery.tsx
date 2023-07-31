@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { ImageGalleryProps } from "@/utils/types/product";
 
+import Image from "next/image";
+
 const ImageGallery: React.FC<ImageGalleryProps> = ({ images }) => {
   const [selectedImage, setSelectedImage] = useState(images[0]);
 
@@ -11,7 +13,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ images }) => {
   return (
     <>
       <div className="flex w-full">
-        <img
+        <Image
           src={selectedImage}
           alt="Product Image"
           className="w-full h-auto max-w-[500px]"
@@ -19,7 +21,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ images }) => {
       </div>
       <div className="flex flex-wrap gap-4 mt-5">
         {images.map((image, index) => (
-          <img
+          <Image
             key={index}
             src={image}
             alt={`Product Image ${index}`}

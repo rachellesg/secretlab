@@ -29,7 +29,7 @@ const CartItem: React.FC<CartItemProps> = ({ item, onRemove }) => {
       <span
         className="cursor-pointer flex justify-end items-start w-1/6"
         onClick={handleRemoveClick}>
-        <img
+        <Image
           src="/cross.svg"
           alt="Remove from cart"
           className="border-white w-5 hover:border-gray-500"
