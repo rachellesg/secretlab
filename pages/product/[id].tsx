@@ -23,7 +23,7 @@ export async function getServerSideProps(context: { query: { id: Number } }) {
     return { props: { product } };
   } catch (error) {
     console.error("Error fetching products:", error);
-    return { props: { product: null } };
+    return { props: { product: [] } };
   }
 }
 

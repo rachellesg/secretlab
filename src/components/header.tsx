@@ -4,8 +4,6 @@ import useCartStore from "@/store/cart";
 import Image from "next/image";
 import Link from "next/link";
 
-import logoImage from "/logo.svg";
-
 const Header: React.FC<{}> = () => {
   const { cartItems } = useCartStore();
 
